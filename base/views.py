@@ -37,16 +37,8 @@ def createRoom(request):
 
 def updateRoom(request, pk):
     room = Room.objects.get(id=pk)
-     # set room form to be a instance of a specific room
     form = RoomForm(request.POST, instance=room)
-    # if there was a post request 
-    # if request.method == 'POST':
-    # # get room form and set instance
-    #     form = RoomForm(instance=room)
-    # # if form is valid save and redirct
-    #     if form.is_valid():
-    #         form.save()
-    #         return redirect("home")
+  
     context={"form":form}
     return render(request, 'base/room_form.html', context)
 
@@ -55,14 +47,7 @@ def updateRoom(request, pk):
     form = RoomForm(instance=room)
 
     if request.method == 'POST':
-        # topic_name = request.POST.get('topic')
-        # topic, created = Topic.objects.get_or_create(name=topic_name)
         form = RoomForm(request.POST, instance=room)
-        
-        # room.name = request.POST.get('name')
-        # room.topic = topic
-        # room.description = request.POST.get('description')
-        # room.save()
         form.save()
         return redirect('home')
 

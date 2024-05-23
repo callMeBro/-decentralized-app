@@ -1,7 +1,6 @@
 {% extends 'main.html' %} {% block content %}
 <div>
   <form method="POST" action="">
-    <!-- make sure user didnt do anything malicious with the form -->
     {% csrf_token %} {{form}}
 
     <input type="submit" value="Submit" />

@@ -1,0 +1,55 @@
+{% extends 'main.html' %} {% block content %}
+<h1>Home Template</h1>
+
+<!--SS Grid layout -->
+<div style="display: grid; grid-template-columns: 25% auto; gap: 20px">
+  <div>
+    <!-- left side content -->
+  </div>
+
+
+  <div style="display: flex; flex-direction: column">
+    <div style="display: flex; flex-wrap: wrap">
+      {% for room in rooms %}
+      <div style="margin-right: 20px; margin-bottom: 20px">
+        <h3>Topic Box</h3>
+        <a href="{% url 'update-room' room.id %}">Edit</a>
+        <a href="{% url 'delete-room' room.id %}">Delete</a>
+        <span>{{ room.host.name }}</span>
+        <h5>
+          Room Name: <a href="{% url 'room' room.id %}">{{ room.name }}</a>
+        </h5>
+        <h5><small>{{ room.topic.name }}</small></h5>
+      </div>
+      {% endfor %}
+
+      <div style="margin-right: 20px; margin-bottom: 20px">
+        <h3>What's New?</h3>
+        <a href="{% url 'readmore' %}"><h5>Read more</h5></a>
+      </div>
+
+      <div style="margin-right: 20px; margin-bottom: 20px">
+        <h5>Recent Activity</h5>
+      </div>
+
+      <div style="margin-right: 20px; margin-bottom: 20px">
+        <a href="{% url 'create-room' %}">Create a Room</a>
+      </div>
+
+      <div style="margin-right: 20px; margin-bottom: 20px">
+        <a href="{% url 'create-room' %}">Work with Data</a>
+      </div>
+      <div style="margin-right: 20px; margin-bottom: 20px">
+        <a href="{% url 'create-room' %}">Projects</a>
+      </div>
+   <div style="margin-right: 20px; margin-bottom: 20px">
+        <a href="{% url 'create-room' %}">More Stuff</a>
+      </div><div style="margin-right: 20px; margin-bottom: 20px">
+        <a href="{% url 'create-room' %}">More Stuff</a>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

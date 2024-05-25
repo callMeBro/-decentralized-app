@@ -5,6 +5,14 @@
 <div style="display: grid; grid-template-columns: 25% auto; gap: 20px">
   <div>
     <!-- left side content -->
+    <h3>Browse Topics</h3>
+    <hr>
+    <a href="{% url 'home' %}">All</a>
+    {% for topic in topics %}
+      <div>
+        <a href="{% url 'home' %}?q={{topic.name}}">{{topic.name}}</a>
+      </div>
+    {% endfor %}
   </div>
 
 
@@ -33,6 +41,7 @@
       </div>
 
       <div style="margin-right: 20px; margin-bottom: 20px">
+        <h5>{{room_count}} room available</h5>
         <a href="{% url 'create-room' %}">Create a Room</a>
       </div>
 

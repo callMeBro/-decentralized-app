@@ -1,5 +1,16 @@
-<a href="/">
-  <h1>LOGO</h1>
-</a>
+<style>
+  .right-aligned {
+    text-align: right;
+  }
+</style>
+<div class="display-flex">
+  <a href="/">
+    <h1>LOGO</h1>
+  </a>
+  <!-- creeate search bar and link to homepage  -->
+  <form method="GET" action="{% url 'home' %}" class="right-aligned">
+    <input type="text" name="q" placeholder="Search Rooms.." />
+  </form>
+</div>
 
 <hr />

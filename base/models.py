@@ -21,7 +21,7 @@ class Topic(models.Model):
     name = models.CharField(max_length=200)    
     
     def __str__(self):
-       return self.name 
+       return self.name or self.email               #use name if available, else use email
    
    
 # create room model 
@@ -56,7 +56,7 @@ class Message(models.Model):
      ordering = ['-updated', 'created']
     
     def __str__(self):
-     return self.body[0:50]
+     return self.body[0:50]             #truncate body 
     
 
         

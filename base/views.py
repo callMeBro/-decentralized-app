@@ -1,10 +1,44 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Room, Topic
+from .models import Room, Topic, CustomUser
 from .forms import RoomForm 
 from django.db.models import Q
+from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
 
 # from django.http import HttpResponse
 
+ 
+def loginP(request):
+    if request.method == "POST":
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        
+        try:
+            user = CustomUser.objects.get(email=email)
+        except CustomUser.DoesNotExist:
+            messages.error(request, "User does not exist")
+            return render(request, 'base/login_register.html')  # Early return to prevent further processing
+        
+        user = authenticate(request, email=email, password=password)  # Authenticate the user     
+        
+        if user is not None:
+            login(request, user)                #creates session in the database 
+            return redirect('home')
+        else:
+            messages.error(request, 'Username OR password does not exist')
+            
+    context = {}
+    return render(request, 'base/login_register.html', context)
+
+def logoutU(request):
+    logout(request)
+    return redirect('home')
+
+
+
+    
+ 
+ 
  
 def home(request):
     # get q and add condition for if its none else prin empty string 

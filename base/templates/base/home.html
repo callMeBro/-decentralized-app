@@ -4,32 +4,15 @@
 <!--SS Grid layout -->
 <div style="display: grid; grid-template-columns: 25% auto; gap: 20px">
   <div>
-    <!-- left side content -->
-    <h3>Browse Topics</h3>
-    <hr>
-    <a href="{% url 'home' %}">All</a>
-    {% for topic in topics %}
-      <div>
-        <a href="{% url 'home' %}?q={{topic.name}}">{{topic.name}}</a>
-      </div>
-    {% endfor %}
+    {% include 'base/topics_component.html'%}
   </div>
 
 
   <div style="display: flex; flex-direction: column">
     <div style="display: flex; flex-wrap: wrap">
-      {% for room in rooms %}
-      <div style="margin-right: 20px; margin-bottom: 20px">
-        <h3>Topic Box</h3>
-        <a href="{% url 'update-room' room.id %}">Edit</a>
-        <a href="{% url 'delete-room' room.id %}">Delete</a>
-        <span>{{ room.host.name }}</span>
-        <h5>
-          Room Name: <a href="{% url 'room' room.id %}">{{ room.name }}</a>
-        </h5>
-        <h5><small>{{ room.topic.name }}</small></h5>
-      </div>
-      {% endfor %}
+
+      {% include 'base/feed_component.html'%}
+      
 
       <div style="margin-right: 20px; margin-bottom: 20px">
         <h3>What's New?</h3>
@@ -37,7 +20,7 @@
       </div>
 
       <div style="margin-right: 20px; margin-bottom: 20px">
-        <h5>Recent Activity</h5>
+          {% include 'base/activity_component.html' %}
       </div>
 
       <div style="margin-right: 20px; margin-bottom: 20px">
